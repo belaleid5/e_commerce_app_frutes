@@ -1,6 +1,6 @@
 import 'package:e_commerce_app_frutes/Core/services/shared_preferences_singleton.dart';
 import 'package:e_commerce_app_frutes/Core/utils/app_images.dart';
-import 'package:e_commerce_app_frutes/Features/auth/persention/views/screens/login_view.dart';
+import 'package:e_commerce_app_frutes/Features/auth/presention/views/screens/login_view.dart';
 import 'package:e_commerce_app_frutes/Features/onBorading/Presention/Views/onBoarding_View.dart';
 import 'package:e_commerce_app_frutes/constant.dart';
 import 'package:flutter/material.dart';

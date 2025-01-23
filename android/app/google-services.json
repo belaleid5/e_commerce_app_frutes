@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "512664442817",
+    "project_id": "my-phone-cb8ea",
+    "storage_bucket": "my-phone-cb8ea.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512664442817:android:75565750f3deda34e84140",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce_app_frutes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512664442817-kl0h4bulc4ls0rssdg8cd5fmkg5e5cgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxAbOxxiI3XfM31pWPIN6q0aRchcGi0MY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512664442817-kl0h4bulc4ls0rssdg8cd5fmkg5e5cgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512664442817:android:247f4ed29e598ac5e84140",
+        "android_client_info": {
+          "package_name": "com.example.untitled"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512664442817-kl0h4bulc4ls0rssdg8cd5fmkg5e5cgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxAbOxxiI3XfM31pWPIN6q0aRchcGi0MY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512664442817-kl0h4bulc4ls0rssdg8cd5fmkg5e5cgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

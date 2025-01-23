@@ -1,6 +1,7 @@
 import 'package:e_commerce_app_frutes/Core/utils/app_images.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/customButton.dart';
-import 'package:e_commerce_app_frutes/Features/auth/persention/views/widgets/social_button.dart';
+import 'package:e_commerce_app_frutes/Features/auth/presention/views/screens/signup_view.dart';
+import 'package:e_commerce_app_frutes/Features/auth/presention/views/widgets/social_button.dart';
 import 'package:e_commerce_app_frutes/constant.dart';
 import 'package:flutter/material.dart';
 import '../../../../../Core/widgets/customTextFormFiled.dart';
@@ -44,7 +45,11 @@ class LoginBody extends StatelessWidget {
                   // onPressed: (){},
                   titleButton: "تسجيل الدخول"),
               SizedBox(height: 33),
-              DontHaveAnAccount(),
+              DontOrHaveAnAccount(
+                tilte: 'لاتمتلك حساب',
+                navTitle: '؟ إنشاء حساب',
+                titleRout: SignUpView.routName,
+              ),
               SizedBox(height: 33),
               OrDivider(),
               SizedBox(height: 16),
