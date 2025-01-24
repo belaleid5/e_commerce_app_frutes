@@ -3,8 +3,8 @@ import 'package:e_commerce_app_frutes/Core/functions/build_error_bar.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/customButton.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/customTextFormFiled.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/custom_text_form_password.dart';
-import 'package:e_commerce_app_frutes/Features/auth/presention/Cubits/cubit/sign_up__cubit.dart';
-import 'package:e_commerce_app_frutes/Features/auth/presention/views/screens/login_view.dart';
+import 'package:e_commerce_app_frutes/Features/auth/presention/Cubits/sign_up_Cubit/sign_up__cubit.dart';
+import 'package:e_commerce_app_frutes/Features/auth/presention/views/screens/sign_in_view.dart';
 import 'package:e_commerce_app_frutes/Features/auth/presention/views/widgets/dont_have_an_account.dart';
 import 'package:e_commerce_app_frutes/Features/auth/presention/views/widgets/terms_and_condition.dart';
 import 'package:e_commerce_app_frutes/constant.dart';
@@ -100,7 +100,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                 const DontOrHaveAnAccount(
                   tilte: " تمتلك حساب بالفعل؟",
                   navTitle: " تسجيل الدخول",
-                  titleRout: LoginView.routName,
+                  titleRout: SignInView.routName,
                 ),
               ],
             ),

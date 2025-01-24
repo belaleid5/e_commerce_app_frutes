@@ -1,6 +1,6 @@
 import 'package:e_commerce_app_frutes/Core/services/shared_preferences_singleton.dart';
 import 'package:e_commerce_app_frutes/Core/utils/app_text_styles.dart';
-import 'package:e_commerce_app_frutes/Features/auth/presention/views/screens/login_view.dart';
+import 'package:e_commerce_app_frutes/Features/auth/presention/views/screens/sign_in_view.dart';
 import 'package:e_commerce_app_frutes/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -49,7 +49,7 @@ class OnBoardingPageViewItem extends StatelessWidget {
                       SharedPreferencesSingleton.setBool(
                           kIsOnBoardingViewSeen, true);
                       Navigator.pushReplacementNamed(
-                          context, LoginView.routName);
+                          context, SignInView.routName);
                     },
                     child: Text(
                       "تخط",

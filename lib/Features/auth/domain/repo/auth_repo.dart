@@ -7,4 +7,8 @@ abstract class AuthRepo {
   // ignore: non_constant_identifier_names
   Future<Either<Faliure, UserEntity>> CreateUserWithEmailAndPassowrd(
       String email, String password, String name);
+
+// ignore: non_constant_identifier_names
+  Future<Either<Faliure, UserEntity>> SignInWithEmaiAndPassowrd(
+      String email, String password);
 }

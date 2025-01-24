@@ -1,6 +1,6 @@
 import 'package:e_commerce_app_frutes/Features/Splash/Presention/Views/splash_view.dart';
-import 'package:e_commerce_app_frutes/Features/auth/presention/views/screens/login_view.dart';
-import 'package:e_commerce_app_frutes/Features/auth/presention/views/screens/signup_view.dart';
+import 'package:e_commerce_app_frutes/Features/auth/presention/views/screens/sign_in_view.dart';
+import 'package:e_commerce_app_frutes/Features/auth/presention/views/screens/sign_up_view.dart';
 import 'package:e_commerce_app_frutes/Features/onBorading/Presention/Views/onBoarding_View.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +12,8 @@ MaterialPageRoute onGenerateRout(RouteSettings settings) {
     case OnBoardingView.onBordingRout:
       return MaterialPageRoute(builder: (context) => const OnBoardingView());
 
-    case LoginView.routName:
-      return MaterialPageRoute(builder: (context) => const LoginView());
+    case SignInView.routName:
+      return MaterialPageRoute(builder: (context) => const SignInView());
     case SignUpView.routName:
       return MaterialPageRoute(builder: (context) => const SignUpView());
     default:
