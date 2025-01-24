@@ -1,0 +1,11 @@
+<resources>
+
+<string name="app_name">frute_ecomerce</string>
+
+
+<string name="facebook_app_id">3861726567430207</string>
+<string name="fb_login_protocol_scheme">fb1234</string>
+<string name="facebook_client_token">9d60efb038154b2699936d7ba51d6b0a</string>
+
+
+</resources>
