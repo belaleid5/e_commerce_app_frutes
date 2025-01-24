@@ -11,4 +11,6 @@ abstract class AuthRepo {
 // ignore: non_constant_identifier_names
   Future<Either<Faliure, UserEntity>> SignInWithEmaiAndPassowrd(
       String email, String password);
+
+  Future<Either<Faliure, UserEntity>> signInWithGoogle();
 }

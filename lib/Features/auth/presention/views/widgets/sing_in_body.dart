@@ -76,7 +76,10 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               const SizedBox(height: 33),
               const OrDivider(),
               const SizedBox(height: 16),
-              const SocialButton(
+              SocialButton(
+                onPressed: () {
+                  context.read<SignInCubit>().signInWithGoogle();
+                },
                 asset: AppAssets.assetsImagesGoogleIcon,
                 title: 'تسجيل بواسطة جوجل',
               ),
