@@ -14,7 +14,9 @@ class SingUpBodyBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpCubit, SignUpCubitState>(
       listener: (context, state) {
-        if (state is SignUpCubitSuccsess) {}
+        if (state is SignUpCubitSuccsess) {
+          buildErrorBar(context, "Sucsess Create Account");
+        }
         if (state is SignUpCubitFaliure) {
           buildErrorBar(context, state.message);
         }

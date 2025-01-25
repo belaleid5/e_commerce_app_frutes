@@ -55,9 +55,8 @@ class AuthRepoImpl extends AuthRepo {
     try {
       var user = await firebaseAuthServices.signInWithEmailAndPassword(
           email: email, password: password);
-      return Right(
-        UserModel.fromFirebaseUser(user),
-      );
+      var userEntity = await getUserData(uid: user.uid);
+      return Right(userEntity);
     } on CustomException catch (e) {
       return Left(ServerFaliure(
         messages: e.message,
@@ -77,7 +76,14 @@ class AuthRepoImpl extends AuthRepo {
     try {
       var user = await firebaseAuthServices.signInWithGoogle();
       var userEntity = UserModel.fromFirebaseUser(user);
-      addData(user: userEntity);
+
+      var userExist = await dataServices.checkIsDataExist(
+          path: BackEndPoint.isExistUser, documentId: user.uid);
+      if (userExist) {
+        getUserData(uid: user.uid);
+      } else {
+        addData(user: userEntity);
+      }
       return Right(userEntity);
     } catch (e) {
       deletUser(user);
@@ -91,7 +97,15 @@ class AuthRepoImpl extends AuthRepo {
     try {
       var user = await firebaseAuthServices.signInWithFacebook();
       var userEntity = UserModel.fromFirebaseUser(user!);
-      addData(user: userEntity);
+
+      var userExist = await dataServices.checkIsDataExist(
+          path: BackEndPoint.isExistUser, documentId: user.uid);
+      if (userExist) {
+        getUserData(uid: user.uid);
+      } else {
+        addData(user: userEntity);
+      }
+
       return Right(userEntity);
     } catch (e) {
       deletUser(user);
@@ -102,6 +116,16 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future addData({required UserEntity user}) async {
     await dataServices.addData(
-        path: BackEndPoint.pathAddUser, data: user.toMap());
+      path: BackEndPoint.pathAddUser,
+      data: user.toMap(),
+      documentId: user.uid,
+    );
+  }
+
+  @override
+  Future<UserEntity> getUserData({required String uid}) async {
+    var userData = await dataServices.getData(
+        path: BackEndPoint.pathGetUser, documentId: uid);
+    return UserModel.fromJson(userData as Map<String, dynamic>);
   }
 }

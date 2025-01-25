@@ -14,7 +14,9 @@ class CustomSignInBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SignInCubit, SignInState>(
       listener: (context, state) {
-        if (state is SignInSucsess) {}
+        if (state is SignInSucsess) {
+          buildErrorBar(context, "Sucsess Sign In Frutes Hub");
+        }
         if (state is SignInFaliure) {
           buildErrorBar(context, state.message);
         }
