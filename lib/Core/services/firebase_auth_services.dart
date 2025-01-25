@@ -4,16 +4,19 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthServices {
+  Future deletUser() async {
+    await FirebaseAuth.instance.currentUser!.delete();
+  }
+
   Future<User?> createUserWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      var user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      return credential.user!;
+      return user.user!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         CustomException(message: "كلمة السر ضعيفة");

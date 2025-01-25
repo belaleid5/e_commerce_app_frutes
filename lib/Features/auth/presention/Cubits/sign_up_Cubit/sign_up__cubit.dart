@@ -16,7 +16,7 @@ class SignUpCubit extends Cubit<SignUpCubitState> {
       required String name}) async {
     emit(SignUpCubitLoading());
     var result =
-        await authRepo.CreateUserWithEmailAndPassowrd(email, password, name);
+        await authRepo.createUserWithEmailAndPassowrd(email, password, name);
     result.fold(
         (faliure) => emit(SignUpCubitFaliure(message: faliure.messages!)),
         (userEntity) =>

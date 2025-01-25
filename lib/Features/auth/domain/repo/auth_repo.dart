@@ -5,7 +5,7 @@ import 'package:either_dart/either.dart';
 abstract class AuthRepo {
   /* of Either package left in Falure  and Right succssufly*/
   // ignore: non_constant_identifier_names
-  Future<Either<Faliure, UserEntity>> CreateUserWithEmailAndPassowrd(
+  Future<Either<Faliure, UserEntity>> createUserWithEmailAndPassowrd(
       String email, String password, String name);
 
 // ignore: non_constant_identifier_names
@@ -14,4 +14,5 @@ abstract class AuthRepo {
 
   Future<Either<Faliure, UserEntity>> signInWithGoogle();
   Future<Either<Faliure, UserEntity>> singInWithFacebook();
+  Future addData({required UserEntity user});
 }

@@ -1,3 +1,4 @@
+import 'package:e_commerce_app_frutes/Core/functions/build_error_bar.dart';
 import 'package:e_commerce_app_frutes/Core/utils/app_images.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/customButton.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/custom_text_form_password.dart';
@@ -84,11 +85,14 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 title: 'تسجيل بواسطة جوجل',
               ),
               const SizedBox(height: 16),
-              const SocialButton(
+              /*  SocialButton(
+                onPressed: (){
+                  buildErrorBar(context, "معذرةّ هذة الخاصية لاتعمل علي جهازك");
+                },
                 asset: AppAssets.assetsImagesApplIcon,
                 title: 'تسجيل بواسطة أبل',
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 16),*/
               SocialButton(
                 onPressed: () {
                   context.read<SignInCubit>().signInWithFacebook();
