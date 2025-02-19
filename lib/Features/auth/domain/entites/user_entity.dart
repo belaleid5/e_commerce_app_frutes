@@ -1,15 +1,7 @@
 class UserEntity {
-  final String? name;
-  final String? email;
-  final String? uid;
+  final String name;
+  final String email;
+  final String uId;
 
-  UserEntity({required this.name, required this.email, required this.uid});
-
-  toMap() {
-    return {
-      'name': name,
-      'email': email,
-      'uid': uid,
-    };
-  }
+  UserEntity({required this.name, required this.email, required this.uId});
 }

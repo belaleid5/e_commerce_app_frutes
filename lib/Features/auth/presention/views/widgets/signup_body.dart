@@ -1,4 +1,3 @@
-import 'package:e_commerce_app_frutes/Core/functions/buildAppBar.dart';
 import 'package:e_commerce_app_frutes/Core/functions/build_error_bar.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/customButton.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/customTextFormFiled.dart';

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:e_commerce_app_frutes/Core/errors/custom_exception.dart';
 import 'package:e_commerce_app_frutes/Core/errors/faliure_user.dart';
 import 'package:e_commerce_app_frutes/Core/services/data_services.dart';
@@ -6,126 +7,150 @@ import 'package:e_commerce_app_frutes/Core/utils/back_end_pont.dart';
 import 'package:e_commerce_app_frutes/Features/auth/data/models/user_model.dart';
 import 'package:e_commerce_app_frutes/Features/auth/domain/entites/user_entity.dart';
 import 'package:e_commerce_app_frutes/Features/auth/domain/repo/auth_repo.dart';
-// ignore: implementation_imports
-import 'package:either_dart/src/either.dart';
+import 'package:either_dart/either.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepoImpl extends AuthRepo {
-  final FirebaseAuthServices firebaseAuthServices;
-  final DataServices dataServices;
+  final FirebaseAuthServices firebaseAuthService;
+  final DatabaseService databaseService;
 
   AuthRepoImpl(
-      {required this.dataServices, required this.firebaseAuthServices});
+      {required this.databaseService, required this.firebaseAuthService});
   @override
-  // ignore: non_constant_identifier_names
-
-  Future<Either<Faliure, UserEntity>> createUserWithEmailAndPassowrd(
+  Future<Either<Faliure, UserEntity>> createUserWithEmailAndPassword(
       String email, String password, String name) async {
     User? user;
     try {
-      user = await firebaseAuthServices.createUserWithEmailAndPassword(
+      user = await firebaseAuthService.createUserWithEmailAndPassword(
           email: email, password: password);
-      var userEntity = UserEntity(name: name, email: email, uid: user!.uid);
-      addData(user: userEntity);
+      var userEntity = UserEntity(
+        name: name,
+        email: email,
+        uId: user!.uid,
+      );
+      await addUserData(user: userEntity);
       return Right(userEntity);
     } on CustomException catch (e) {
-      deletUser(user);
-      return Left(ServerFaliure(
-        messages: e.message,
-      ));
+      await deleteUser(user);
+      return Left(ServerFaliure(messages: e.message));
     } catch (e) {
+      await deleteUser(user);
+      log(
+        'Exception in AuthRepoImpl.createUserWithEmailAndPassword: ${e.toString()}',
+      );
       return Left(
         ServerFaliure(
-          messages: 'حدث خطأ يرجي المحاولة مرة اخري',
+          messages: 'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
         ),
       );
     }
   }
 
-  void deletUser(User? user) {
+  Future<void> deleteUser(User? user) async {
     if (user != null) {
-      firebaseAuthServices.deletUser();
+      await firebaseAuthService.deletUser();
     }
   }
 
   @override
-  // ignore: non_constant_identifier_names
-  Future<Either<Faliure, UserEntity>> SignInWithEmaiAndPassowrd(
+  Future<Either<Faliure, UserEntity>> signinWithEmailAndPassword(
       String email, String password) async {
     try {
-      var user = await firebaseAuthServices.signInWithEmailAndPassword(
+      var user = await firebaseAuthService.signInWithEmailAndPassword(
           email: email, password: password);
       var userEntity = await getUserData(uid: user.uid);
-      return Right(userEntity);
+      return Right(
+        userEntity,
+      );
     } on CustomException catch (e) {
-      return Left(ServerFaliure(
-        messages: e.message,
-      ));
+      return Left(
+        ServerFaliure(messages: e.message),
+      );
     } catch (e) {
+      log(
+        'Exception in AuthRepoImpl.createUserWithEmailAndPassword: ${e.toString()}',
+      );
       return Left(
         ServerFaliure(
-          messages: 'حدث خطأ يرجي المحاولة مرة اخري',
+          messages: 'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
         ),
       );
     }
   }
 
   @override
-  Future<Either<Faliure, UserEntity>> signInWithGoogle() async {
+  Future<Either<Faliure, UserEntity>> signinWithGoogle() async {
     User? user;
     try {
-      var user = await firebaseAuthServices.signInWithGoogle();
+      user = await firebaseAuthService.signInWithGoogle();
+
       var userEntity = UserModel.fromFirebaseUser(user);
-
-      var userExist = await dataServices.checkIsDataExist(
-          path: BackEndPoint.isExistUser, documentId: user.uid);
-      if (userExist) {
-        getUserData(uid: user.uid);
+      var isUserExist = await databaseService.checkIfDataExists(
+          path: BackEndPoint.isExistUser, docuementId: user.uid);
+      if (isUserExist) {
+        await getUserData(uid: user.uid);
       } else {
-        addData(user: userEntity);
+        await addUserData(user: userEntity);
       }
       return Right(userEntity);
     } catch (e) {
-      deletUser(user);
-      return Left(ServerFaliure(messages: "لقد حدث خطأ ما حاول مرة اخري"));
+      await deleteUser(user);
+      log(
+        'Exception in AuthRepoImpl.createUserWithEmailAndPassword: ${e.toString()}',
+      );
+      return Left(
+        ServerFaliure(
+          messages: 'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+        ),
+      );
     }
   }
 
   @override
-  Future<Either<Faliure, UserEntity>> singInWithFacebook() async {
+  Future<Either<Faliure, UserEntity>> signinWithFacebook() async {
     User? user;
     try {
-      var user = await firebaseAuthServices.signInWithFacebook();
+      user = await firebaseAuthService.signInWithFacebook();
       var userEntity = UserModel.fromFirebaseUser(user!);
-
-      var userExist = await dataServices.checkIsDataExist(
-          path: BackEndPoint.isExistUser, documentId: user.uid);
-      if (userExist) {
-        getUserData(uid: user.uid);
-      } else {
-        addData(user: userEntity);
-      }
-
+      await addUserData(user: userEntity);
       return Right(userEntity);
     } catch (e) {
-      deletUser(user);
-      return Left(ServerFaliure(messages: "لقد حدث خطأ ما حاول مرة اخري"));
+      await deleteUser(user);
+      log(
+        'Exception in AuthRepoImpl.createUserWithEmailAndPassword: ${e.toString()}',
+      );
+      return Left(
+        ServerFaliure(
+          messages: 'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+        ),
+      );
     }
   }
 
   @override
-  Future addData({required UserEntity user}) async {
-    await dataServices.addData(
+  Future addUserData({required UserEntity user}) async {
+    await databaseService.addData(
       path: BackEndPoint.pathAddUser,
-      data: user.toMap(),
-      documentId: user.uid,
+      data: UserModel.fromEntity(user).toMap(),
+      documentId: user.uId,
     );
   }
 
   @override
+  @override
   Future<UserEntity> getUserData({required String uid}) async {
-    var userData = await dataServices.getData(
-        path: BackEndPoint.pathGetUser, documentId: uid);
-    return UserModel.fromJson(userData as Map<String, dynamic>);
+    var userData = await databaseService.getData(
+        path: BackEndPoint.pathGetUser, docuementId: uid);
+    return UserModel.fromJson(userData);
   }
 }
+
+
+
+
+  /* @override
+  Future saveUserData({required UserEntity user}) async {
+    var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
+    await Prefs.setString(kUserData, jsonData);
+  }*/
+

@@ -1,4 +1,4 @@
-import 'package:e_commerce_app_frutes/Core/functions/build_error_bar.dart';
+// ignore_for_file: avoid_print
 import 'package:e_commerce_app_frutes/Core/utils/app_images.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/customButton.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/custom_text_form_password.dart';
@@ -57,11 +57,11 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               const CustomResetPassword(),
               const SizedBox(height: 33),
               CustomButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (fromKey.currentState!.validate()) {
                       fromKey.currentState!.save();
-                      context.read<SignInCubit>().signInWithEmailAndPassword(
-                          email: email, password: passowrd);
+
+                      await context.read<SigninCubit>().signin(email, passowrd);
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
@@ -79,7 +79,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               const SizedBox(height: 16),
               SocialButton(
                 onPressed: () {
-                  context.read<SignInCubit>().signInWithGoogle();
+                  context.read<SigninCubit>().signinWithGoogle();
                 },
                 asset: AppAssets.assetsImagesGoogleIcon,
                 title: 'تسجيل بواسطة جوجل',
@@ -95,7 +95,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               const SizedBox(height: 16),*/
               SocialButton(
                 onPressed: () {
-                  context.read<SignInCubit>().signInWithFacebook();
+                  context.read<SigninCubit>().signinWithGoogle();
                 },
                 asset: AppAssets.assetsImagesFacebookIcon,
                 title: 'تسجيل بواسطة فيس بوك',

@@ -1,34 +1,38 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce_app_frutes/Features/auth/domain/repo/auth_repo.dart';
-import 'package:e_commerce_app_frutes/Features/auth/presention/Cubits/sign_up_Cubit/sign_up__cubit.dart';
-import 'package:meta/meta.dart';
+import 'package:e_commerce_app_frutes/Features/auth/presention/Cubits/sing_in_cubit/cubit/sign_in_state.dart';
 
-part 'sign_in_state.dart';
-
-class SignInCubit extends Cubit<SignInState> {
-  SignInCubit(this.authRepo) : super(SignInInitial());
+class SigninCubit extends Cubit<SigninState> {
+  SigninCubit(this.authRepo) : super(SigninInitial());
   final AuthRepo authRepo;
-  Future<void> signInWithEmailAndPassword({
-    required String email,
-    required String password,
-  }) async {
-    emit(SignInLoading());
-    var result = await authRepo.SignInWithEmaiAndPassowrd(email, password);
-    result.fold((faliure) => emit(SignInFaliure(message: faliure.messages!)),
-        (userEntity) => emit(SignInSucsess(userEntity: userEntity.toString())));
+
+  Future<void> signin(String email, String password) async {
+    emit(SigninLoading());
+    var result = await authRepo.signinWithEmailAndPassword(
+      email,
+      password,
+    );
+    result.fold(
+      (failure) => emit(SigninFailure(message: failure.messages!)),
+      (userEntity) => emit(SigninSuccess(userEntity: userEntity)),
+    );
   }
 
-  Future<void> signInWithGoogle() async {
-    emit(SignInLoading());
-    var result = await authRepo.signInWithGoogle();
-    result.fold((faliure) => emit(SignInFaliure(message: faliure.messages!)),
-        (userEntity) => emit(SignInSucsess(userEntity: userEntity.toString())));
+  Future<void> signinWithGoogle() async {
+    emit(SigninLoading());
+    var result = await authRepo.signinWithGoogle();
+    result.fold(
+      (failure) => emit(SigninFailure(message: failure.messages!)),
+      (userEntity) => emit(SigninSuccess(userEntity: userEntity)),
+    );
   }
 
-  Future<void> signInWithFacebook() async {
-    emit(SignInLoading());
-    var result = await authRepo.singInWithFacebook();
-    result.fold((faliure) => emit(SignInFaliure(message: faliure.messages!)),
-        (userEntity) => emit(SignInSucsess(userEntity: userEntity.toString())));
+  Future<void> signinWithFacebook() async {
+    emit(SigninLoading());
+    var result = await authRepo.signinWithFacebook();
+    result.fold(
+      (failure) => emit(SigninFailure(message: failure.messages!)),
+      (userEntity) => emit(SigninSuccess(userEntity: userEntity)),
+    );
   }
 }

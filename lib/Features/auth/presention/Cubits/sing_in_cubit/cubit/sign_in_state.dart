@@ -1,21 +1,19 @@
-part of 'sign_in_cubit.dart';
+import 'package:e_commerce_app_frutes/Features/auth/domain/entites/user_entity.dart';
 
-@immutable
-sealed class SignInState {}
+sealed class SigninState {}
 
-final class SignInInitial extends SignInState {}
+final class SigninInitial extends SigninState {}
 
-final class SignInLoading extends SignInState {}
+final class SigninLoading extends SigninState {}
 
-final class SignInFaliure extends SignInState {
-  final String message;
+final class SigninSuccess extends SigninState {
+  final UserEntity userEntity;
 
-  SignInFaliure({required this.message});
+  SigninSuccess({required this.userEntity});
 }
 
-// ignore: must_be_immutable
-final class SignInSucsess extends SignInState {
-  final String userEntity;
+final class SigninFailure extends SigninState {
+  final String message;
 
-  SignInSucsess({required this.userEntity});
+  SigninFailure({required this.message});
 }
