@@ -1,3 +1,4 @@
+import 'package:e_commerce_app_frutes/Core/functions/buil_border.dart';
 import 'package:e_commerce_app_frutes/Core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -42,11 +43,5 @@ class CustomTextFormField extends StatelessWidget {
         focusedBorder: buildBorder(),
       ),
     );
-  }
-
-  OutlineInputBorder buildBorder() {
-    return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(width: 1, color: Color(0xFFE6E9E9)));
   }
 }
