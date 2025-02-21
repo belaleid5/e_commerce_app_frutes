@@ -1,5 +1,6 @@
 import 'package:e_commerce_app_frutes/Features/home/views/widgets/custom_home_app_bar.dart';
 import 'package:e_commerce_app_frutes/Features/home/views/widgets/custom_search_decortion.dart';
+import 'package:e_commerce_app_frutes/Features/home/views/widgets/feature_item.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -19,6 +20,10 @@ class HomeViewBody extends StatelessWidget {
                   height: 20,
                 ),
                 CustomSearchDecoration(),
+                SizedBox(
+                  height: 16,
+                ),
+                FeaturedItem(),
               ],
             ),
           )

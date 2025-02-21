@@ -12,7 +12,7 @@ class CustomSearchDecoration extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(boxShadow: [
         BoxShadow(
-          color: Color(0xAA000000),
+          color: Color(0x0A000000),
           offset: Offset(0, 2),
           blurRadius: 9,
         ),

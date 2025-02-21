@@ -1,4 +1,5 @@
 import 'package:e_commerce_app_frutes/Core/functions/build_error_bar.dart';
+import 'package:e_commerce_app_frutes/Core/services/shared_preferences_singleton.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/customButton.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/customTextFormFiled.dart';
 import 'package:e_commerce_app_frutes/Core/widgets/custom_text_form_password.dart';

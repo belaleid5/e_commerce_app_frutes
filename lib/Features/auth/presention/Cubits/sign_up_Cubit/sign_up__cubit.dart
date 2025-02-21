@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:e_commerce_app_frutes/Core/services/shared_preferences_singleton.dart';
 import 'package:e_commerce_app_frutes/Features/auth/domain/repo/auth_repo.dart';
+import 'package:e_commerce_app_frutes/constant.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 
@@ -17,6 +19,7 @@ class SignUpCubit extends Cubit<SignUpCubitState> {
     emit(SignUpCubitLoading());
     var result =
         await authRepo.createUserWithEmailAndPassword(email, password, name);
+    SharedPreferencesSingleton.setBool(kIsOnBoardingViewSeen, true);
     result.fold(
         (faliure) => emit(SignUpCubitFaliure(message: faliure.messages!)),
         (userEntity) =>

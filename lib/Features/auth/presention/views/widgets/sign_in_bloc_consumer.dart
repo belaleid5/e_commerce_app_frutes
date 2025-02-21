@@ -1,8 +1,10 @@
 import 'package:e_commerce_app_frutes/Core/functions/build_error_bar.dart';
+import 'package:e_commerce_app_frutes/Core/services/shared_preferences_singleton.dart';
 import 'package:e_commerce_app_frutes/Features/auth/presention/Cubits/sing_in_cubit/cubit/sign_in_cubit.dart';
 import 'package:e_commerce_app_frutes/Features/auth/presention/Cubits/sing_in_cubit/cubit/sign_in_state.dart';
 import 'package:e_commerce_app_frutes/Features/auth/presention/views/widgets/sing_in_body.dart';
 import 'package:e_commerce_app_frutes/Features/home/views/home_view.dart';
+import 'package:e_commerce_app_frutes/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -19,6 +21,7 @@ class CustomSignInBlocConsumer extends StatelessWidget {
         if (state is SigninSuccess) {
           buildErrorBar(context, "Sucsess Sign In Frutes Hub");
           Navigator.pushNamed(context, HomeView.routName);
+          SharedPreferencesSingleton.setBool(kIsLoginUser, true);
         }
         if (state is SigninFailure) {
           buildErrorBar(context, state.message);

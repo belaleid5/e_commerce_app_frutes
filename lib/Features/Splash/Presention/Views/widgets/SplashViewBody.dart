@@ -1,6 +1,7 @@
 import 'package:e_commerce_app_frutes/Core/services/shared_preferences_singleton.dart';
 import 'package:e_commerce_app_frutes/Core/utils/app_images.dart';
 import 'package:e_commerce_app_frutes/Features/auth/presention/views/screens/sign_in_view.dart';
+import 'package:e_commerce_app_frutes/Features/home/views/home_view.dart';
 import 'package:e_commerce_app_frutes/Features/on_borading/Presention/Views/onBoarding_View.dart';
 import 'package:e_commerce_app_frutes/constant.dart';
 import 'package:flutter/material.dart';
@@ -48,12 +49,16 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   void excuteNavigate() {
     bool isOnBoardingViewSeen =
         SharedPreferencesSingleton.getBool(kIsOnBoardingViewSeen);
+    bool isLoginUser = SharedPreferencesSingleton.getBool(kIsLoginUser);
     Future.delayed(const Duration(seconds: 3), () {
-      // ignore: use_build_context_synchronously
       Navigator.pushReplacementNamed(context, OnBoardingView.onBordingRout);
 
       if (isOnBoardingViewSeen) {
-        Navigator.pushReplacementNamed(context, SignInView.routName);
+        if (isLoginUser) {
+          Navigator.pushReplacementNamed(context, HomeView.routName);
+        } else {
+          Navigator.pushReplacementNamed(context, SignInView.routName);
+        }
       } else {
         Navigator.pushReplacementNamed(context, OnBoardingView.onBordingRout);
       }
