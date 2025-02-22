@@ -1,7 +1,8 @@
+import 'package:e_commerce_app_frutes/Core/widgets/fruit_item.dart';
+import 'package:e_commerce_app_frutes/Features/home/views/widgets/List_item_fuit_grid_view.dart';
 import 'package:e_commerce_app_frutes/Features/home/views/widgets/best_selling_header.dart';
 import 'package:e_commerce_app_frutes/Features/home/views/widgets/custom_home_app_bar.dart';
 import 'package:e_commerce_app_frutes/Features/home/views/widgets/custom_search_decortion.dart';
-import 'package:e_commerce_app_frutes/Features/home/views/widgets/feature_item.dart';
 import 'package:e_commerce_app_frutes/Features/home/views/widgets/featured_item_list.dart';
 import 'package:flutter/material.dart';
 
@@ -27,9 +28,13 @@ class HomeViewBody extends StatelessWidget {
                 ),
                 FeaturedItemList(),
                 SizedBox(
-                  height: 12,
+                  height: 24,
                 ),
                 BestSellingHeader(),
+                SizedBox(
+                  height: 12,
+                ),
+                ListFruitItem(),
               ],
             ),
           )
