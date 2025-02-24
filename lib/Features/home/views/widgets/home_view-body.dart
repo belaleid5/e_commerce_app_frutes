@@ -1,4 +1,3 @@
-import 'package:e_commerce_app_frutes/Core/widgets/fruit_item.dart';
 import 'package:e_commerce_app_frutes/Features/home/views/widgets/List_item_fuit_grid_view.dart';
 import 'package:e_commerce_app_frutes/Features/home/views/widgets/best_selling_header.dart';
 import 'package:e_commerce_app_frutes/Features/home/views/widgets/custom_home_app_bar.dart';
@@ -34,10 +33,10 @@ class HomeViewBody extends StatelessWidget {
                 SizedBox(
                   height: 12,
                 ),
-                ListFruitItem(),
               ],
             ),
-          )
+          ),
+          ListFruitItem(),
         ],
       ),
     );

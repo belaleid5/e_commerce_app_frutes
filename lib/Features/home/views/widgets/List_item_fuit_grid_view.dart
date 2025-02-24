@@ -9,7 +9,7 @@ class ListFruitItem extends StatelessWidget {
     return SliverGrid.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: 214 / 163,
+          childAspectRatio: 163 / 214,
           mainAxisSpacing: 8,
           crossAxisSpacing: 16,
         ),
